@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-5">
+    <h2>{{ contact.first_name }} {{ contact.last_name }}</h2>
+    <hr>
+    <p><strong>Email:</strong> {{ contact.email }}</p>
+    <p><strong>Phone:</strong> {{ contact.phone }}</p>
+    <p><strong>Category:</strong> {{ contact.category }}</p>
+    <p><strong>Notes:</strong> {{ contact.notes|default:"No notes provided." }}</p>
+    <div class="mt-4">
+        <a href="{% url 'contact_edit' contact.pk %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'contact_delete' contact.pk %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'contact_list' %}" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+{% endblock %}

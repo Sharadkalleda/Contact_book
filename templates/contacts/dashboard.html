@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card bg-primary text-white p-4 mb-4">
+            <h3>Total Contacts</h3>
+            <p class="display-4">{{ total }}</p>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4>Recent Contacts</h4>
+                <a href="{% url 'contact_add' %}" class="btn btn-success btn-sm">+ Add New</a>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for contact in recent %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        {{ contact.first_name }} {{ contact.last_name }}
+                        <span class="badge bg-secondary">{{ contact.category }}</span>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">No contacts yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
