@@ -38,27 +38,23 @@ The database is structured around two primary entities:
 
 🛠️ Installation & Setup
 1. Clone the Repository:
-Bash:
-git clone https://github.com/Sharadkalleda/Contact_book.git
-cd Contact_book
+> git clone https://github.com/Sharadkalleda/Contact_book.git
+> cd Contact_book
 
 2. Set up Virtual Environment:
-Bash:
-python -m venv venv
-.\venv\Scripts\activate  # Windows
+> python -m venv venv
+> .\venv\Scripts\activate  # Windows
 
 3. Install Requirements:
-Bash:
-pip install -r requirements.txt
+> pip install -r requirements.txt
 
 4. Database Configuration:
 > Create a MySQL database.
 > Update your credentials in: core/settings.py.
 
 5. Run Migrations & Start Server:
-Bash:
-python manage.py migrate
-python manage.py runserver
+> python manage.py migrate
+> python manage.py runserver
 
 
 
