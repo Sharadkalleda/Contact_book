@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="card p-5">
-    <h2>{{ contact.first_name }} {{ contact.last_name }}</h2>
+    <div class="d-flex align-items-center gap-3 mb-3">
+        {% if contact.image %}
+            <img src="{{ contact.image.url }}" alt="{{ contact.first_name }}" class="rounded-circle" style="width:100px; height:100px; object-fit:cover;">
+        {% else %}
+            <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center" style="width:100px; height:100px; font-size:24px;">{{ contact.first_name|slice:":1" }}{{ contact.last_name|slice:":1" }}</div>
+        {% endif %}
+        <h2>{{ contact.first_name }} {{ contact.last_name }}</h2>
+    </div>
     <hr>
     <p><strong>Email:</strong> {{ contact.email }}</p>
     <p><strong>Phone:</strong> {{ contact.phone }}</p>

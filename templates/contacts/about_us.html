@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_style %}style="--navbar-bg: url('{% static "about_us.jpg" %}'); --body-bg: url('{% static "about_body.png" %}')"{% endblock %}
+
+{% block navbar_brand %}
+    <a class="navbar-brand" href="{% url 'dashboard' %}" aria-label="Dashboard Home">
+        ContactHub
+    </a>
+{% endblock %}
+
+{% block page_header %}
+    <div class="d-flex justify-content-between align-items-center mb-3 header-bg-image" 
+         style="--bg-url: url('{% static "about_us.jpg" %}');">
+        <div style="background: rgba(0, 0, 0, 0.42); padding: 12px; border-radius: 8px;">
+            <small class="text-light" style="font-size: 1.1rem;">Learn why ContactHub exists</small>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<style>
+    /* Fixed: Moving background logic here prevents VS Code syntax errors */
+    .header-bg-image {
+        background: var(--bg-url) center/cover no-repeat;
+        border-radius: 0.75rem;
+        padding: 14px;
+        position: relative;
+    }
+
+    .about-hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), var(--hero-url) center/cover no-repeat;
+        border-radius: 20px;
+        min-height: 350px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+    }
+
+    .about-values .card {
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        transition: transform 0.2s ease;
+    }
+    .about-values .card:hover {
+        transform: translateY(-5px);
+    }
+    .about-values .feature-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px auto;
+        font-size: 22px;
+        color: #fff;
+    }
+</style>
+
+<div class="container my-4">
+    <section class="about-hero mb-4" style="--hero-url: url('{% static "about_connection.jpg" %}');">
+        <div class="w-100">
+            <h1 class="display-5 fw-bold" style="color:#fff;">Building Better Connections</h1>
+            <p class="lead mt-3" style="color:#fff; font-size:1.25rem;">A modern hub for building, organizing, and tracking your personal network.</p>
+        </div>
+    </section>
+
+    <div class="bg-white bg-opacity-90 rounded-4 p-4 shadow-sm mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-7">
+                <h2 class="fw-bold">Our Mission</h2>
+                <p>ContactHub is built to empower professionals to manage connections reliably. We bridge your daily tasks with clean UX, secure storage, and fast access to relationships that matter.</p>
+                <p>As your network grows, ContactHub scales with you — with smart search, recent history, and easy exports for work or collaboration.</p>
+            </div>
+            <div class="col-md-5">
+                <img src="{% static 'about_mission.jpg' %}" alt="About ContactHub Workspace" class="img-fluid rounded-4 shadow" style="object-fit: cover; height: 240px; width: 100%;">
+            </div>
+        </div>
+    </div>
+
+    <section class="about-values">
+        <h3 class="mb-4 text-center">Core Values</h3>
+        <div class="row g-3">
+            <div class="col-md-3 col-6">
+                <div class="card p-3 text-center h-100">
+                    <div class="feature-icon bg-success">🌱</div>
+                    <h6 class="fw-bold">Growth</h6>
+                    <p class="small text-muted">Support healthy network growth and productivity.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card p-3 text-center h-100">
+                    <div class="feature-icon bg-primary">🔒</div>
+                    <h6 class="fw-bold">Security</h6>
+                    <p class="small text-muted">Your contacts are private and access-controlled.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card p-3 text-center h-100">
+                    <div class="feature-icon bg-warning">⚡</div>
+                    <h6 class="fw-bold">Speed</h6>
+                    <p class="small text-muted">Fast search, quick edits, instant updates.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card p-3 text-center h-100">
+                    <div class="feature-icon bg-info">🤝</div>
+                    <h6 class="fw-bold">Collaboration</h6>
+                    <p class="small text-muted">Easily share insights and export your list.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

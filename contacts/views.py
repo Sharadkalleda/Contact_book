@@ -22,7 +22,7 @@ def contact_list(request):
 @login_required
 def contact_add(request):
     if request.method == "POST":
-        form = ContactForm(request.POST)
+        form = ContactForm(request.POST, request.FILES)
         if form.is_valid():
             contact = form.save(commit=False)
             contact.owner = request.user
@@ -31,6 +31,18 @@ def contact_add(request):
     else:
         form = ContactForm()
     return render(request, 'contacts/contact_form.html', {'form': form})
+
+@login_required
+def contact_edit(request, pk):
+    contact = get_object_or_404(Contact, pk=pk, owner=request.user)
+    if request.method == "POST":
+        form = ContactForm(request.POST, request.FILES, instance=contact)
+        if form.is_valid():
+            form.save()
+            return redirect('contact_list')
+    else:
+        form = ContactForm(instance=contact)
+    return render(request, 'contacts/contact_form.html', {'form': form, 'edit_mode': True, 'contact': contact})
 
 @login_required
 def export_csv(request):
@@ -66,21 +78,13 @@ def contact_detail(request, pk):
     return render(request, 'contacts/contact_detail.html', {'contact': contact})
 
 @login_required
-def contact_edit(request, pk):
-    contact = get_object_or_404(Contact, pk=pk, owner=request.user)
-    if request.method == "POST":
-        form = ContactForm(request.POST, instance=contact)
-        if form.is_valid():
-            form.save()
-            return redirect('contact_list')
-    else:
-        form = ContactForm(instance=contact)
-    return render(request, 'contacts/contact_form.html', {'form': form, 'edit_mode': True})
-
-@login_required
 def contact_delete(request, pk):
     contact = get_object_or_404(Contact, pk=pk, owner=request.user)
     if request.method == "POST":
         contact.delete()
         return redirect('contact_list')
     return render(request, 'contacts/contact_confirm_delete.html', {'contact': contact})
+
+@login_required
+def about_us(request):
+    return render(request, 'contacts/about_us.html')
